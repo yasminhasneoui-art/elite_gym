@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Élite Gym — Inscription</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--white:#fff;--cream:#faf8f4;--dark:#1c1712;--mid:#4a4035;--muted:#9a8a78;--gold:#c9a84c;--gold2:#e8c96a;--border:#e8e0d4;--shadow:0 4px 32px rgba(28,23,18,.10);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--dark);font-family:'DM Sans',sans-serif;}
+
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:68px;background:rgba(255,255,255,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(14px);}
+.logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:22px;letter-spacing:3px;text-transform:uppercase;color:var(--dark);text-decoration:none;}
+.logo span{color:var(--gold);}
+nav ul{list-style:none;display:flex;gap:28px;}
+nav ul a{color:var(--mid);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;}
+nav ul a:hover{color:var(--gold);}
+
+.hero{height:340px;position:relative;display:flex;align-items:flex-end;padding-bottom:60px;}
+.hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&q=85');background-size:cover;background-position:center;background-color:#2a2019;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,23,18,.9) 0%,rgba(28,23,18,.5) 100%);}
+.hero-line{position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--gold);}
+.hero-content{position:relative;z-index:2;padding:0 70px;}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px;}
+.hero-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(40px,7vw,80px);color:#fff;line-height:.92;}
+.hero-title em{font-style:normal;color:var(--gold);}
+
+.form-wrap{max-width:860px;margin:60px auto;padding:0 24px 80px;}
+.section-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.form-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:32px;color:var(--dark);margin-bottom:40px;}
+.form-section-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:1px;color:var(--mid);margin:32px 0 18px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.label-hint{font-size:11px;font-weight:400;color:var(--muted);letter-spacing:0;text-transform:none;}
+.req{color:#e63946;}
+
+.row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.row.three{grid-template-columns:1fr 1fr 1fr;}
+.field{margin-bottom:4px;}
+label{display:block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+input,select,textarea{width:100%;background:var(--white);border:1px solid var(--border);border-bottom:2px solid var(--border);color:var(--dark);padding:12px 16px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:all .25s;border-radius:4px;}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.1);background:#fff;}
+textarea{resize:vertical;min-height:90px;}
+
+/* GENRE */
+.genre-group{display:flex;gap:12px;}
+.genre-card{display:flex;align-items:center;gap:10px;padding:12px 20px;border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:14px;transition:all .2s;background:var(--white);flex:1;justify-content:center;}
+.genre-card input[type=radio]{display:none;}
+.genre-card .check-icon{display:none;}
+.genre-card:has(input:checked){border-color:var(--gold);background:rgba(201,168,76,.07);}
+.genre-card:has(input:checked) .check-icon{display:inline;color:var(--gold);}
+
+/* CHECK CARDS */
+.check-group{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;}
+.check-card{display:flex;align-items:center;gap:10px;padding:12px 16px;border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:13px;transition:all .2s;background:var(--white);}
+.check-card input[type=checkbox],.check-card input[type=radio]{display:none;}
+.check-card .check-icon{width:18px;height:18px;border:2px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all .2s;flex-shrink:0;color:transparent;}
+.check-card:has(input:checked){border-color:var(--gold);background:rgba(201,168,76,.07);}
+.check-card:has(input:checked) .check-icon{background:var(--gold);border-color:var(--gold);color:var(--dark);}
+
+.sante-group{display:flex;flex-direction:column;gap:10px;margin-bottom:12px;}
+.sante-detail{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:16px;margin-top:4px;}
+.sante-note{font-size:11px;color:var(--muted);margin-top:8px;}
+.hidden{display:none;}
+
+/* IMC Preview */
+.imc-preview{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.25);border-radius:6px;padding:14px 18px;display:flex;align-items:center;gap:12px;margin-top:4px;}
+.imc-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+.imc-val{font-family:'Montserrat',sans-serif;font-weight:900;font-size:22px;color:var(--dark);}
+.imc-tag{font-size:12px;color:var(--mid);}
+
+/* PLANS */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.plan{border:2px solid var(--border);border-radius:8px;padding:24px;cursor:pointer;transition:all .25s;background:var(--white);text-align:center;}
+.plan:hover{border-color:rgba(201,168,76,.4);}
+.plan.active{border-color:var(--gold);background:rgba(201,168,76,.06);}
+.plan-name{font-family:'Montserrat',sans-serif;font-weight:900;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.plan-price{font-family:'Montserrat',sans-serif;font-weight:900;font-size:30px;color:var(--dark);margin-bottom:6px;}
+.plan.active .plan-price{color:var(--gold);}
+.plan-feat{font-size:12px;color:var(--muted);}
+
+/* PAYMENT MODE */
+.pay-modes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:4px;}
+.pay-mode-card{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 12px;border:2px solid var(--border);border-radius:8px;cursor:pointer;transition:all .25s;background:var(--white);text-align:center;}
+.pay-mode-card input[type=radio]{display:none;}
+.pay-mode-card .pm-icon{font-size:28px;}
+.pay-mode-card .pm-name{font-size:12px;font-weight:700;color:var(--mid);}
+.pay-mode-card .pm-sub{font-size:10px;color:var(--muted);}
+.pay-mode-card:has(input:checked){border-color:var(--gold);background:rgba(201,168,76,.07);}
+.pay-mode-card:has(input:checked) .pm-name{color:var(--gold);}
+
+/* TERMS */
+.terms-row{display:flex;align-items:flex-start;gap:14px;padding:16px;border:1px solid var(--border);border-radius:6px;cursor:pointer;margin-top:20px;transition:border .2s;background:var(--white);}
+.terms-row:hover,.terms-row.checked{border-color:var(--gold);background:rgba(201,168,76,.04);}
+.check-box{width:22px;height:22px;border:2px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;transition:all .2s;flex-shrink:0;color:transparent;margin-top:2px;}
+.terms-row.checked .check-box{background:var(--gold);border-color:var(--gold);color:var(--dark);}
+.terms-text{font-size:13px;color:var(--mid);line-height:1.6;}
+.terms-text a{color:var(--gold);text-decoration:none;font-weight:600;}
+
+.form-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:28px;gap:20px;flex-wrap:wrap;}
+.promo{font-size:13px;color:var(--mid);}
+.form-actions{display:flex;gap:12px;align-items:center;}
+.btn-cancel{color:var(--muted);text-decoration:none;font-size:13px;font-weight:600;padding:12px 20px;border:1px solid var(--border);border-radius:4px;transition:all .2s;}
+.btn-cancel:hover{border-color:var(--muted);color:var(--dark);}
+.btn-primary{background:var(--gold);color:var(--dark);border:none;padding:14px 32px;font-size:14px;font-weight:700;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .25s;}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 8px 20px rgba(201,168,76,.35);}
+
+.success{background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:28px;text-align:center;display:none;}
+.success h3{font-family:'Montserrat',sans-serif;font-weight:900;font-size:22px;color:#166534;margin-bottom:8px;}
+.success p{color:#15803d;font-size:14px;line-height:1.6;}
+
+footer{background:var(--dark);color:rgba(255,255,255,.5);padding:30px 60px;display:flex;justify-content:space-between;align-items:center;font-size:12px;}
+.footer-logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:20px;letter-spacing:3px;color:#fff;}
+.footer-logo span{color:var(--gold);}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{color:rgba(255,255,255,.4);text-decoration:none;font-size:12px;transition:color .2s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-copy{font-size:11px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">ÉLITE<span>GYM</span></a>
+  <ul>
+    <li><a href="index.html#programmes">Programmes</a></li>
+    <li><a href="index.html#tarifs">Tarifs</a></li>
+    <li><a href="login.html">Connexion</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <p class="eyebrow">★ Tunis — Inscription en ligne</p>
+    <h1 class="hero-title">REJOINS<br><em>L'ÉLITE.</em></h1>
+  </div>
+</section>
+
+<main class="form-wrap">
+  <span class="section-tag">Nouvelle inscription</span>
+  <h2 class="form-title">TON PROFIL</h2>
+
+  <form id="inscriptionForm" novalidate>
+
+    <!-- Informations personnelles -->
+    <div class="form-section-title">👤 Informations personnelles</div>
+    <div class="row">
+      <div class="field"><label for="prenom">Prénom <span class="req">*</span></label><input type="text" id="prenom" placeholder="Ahmed" required></div>
+      <div class="field"><label for="nom">Nom <span class="req">*</span></label><input type="text" id="nom" placeholder="Ben Ali" required></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="email">Email <span class="req">*</span></label><input type="email" id="email" placeholder="ahmed@email.com" required></div>
+      <div class="field"><label for="tel">Téléphone <span class="req">*</span></label><input type="tel" id="tel" placeholder="+216 XX XXX XXX" required></div>
+    </div>
+    <div class="field">
+      <label>Genre <span class="req">*</span></label>
+      <div class="genre-group">
+        <label class="genre-card"><input type="radio" name="genre" value="Homme" required><span class="check-icon">✓</span><span>♂ Homme</span></label>
+        <label class="genre-card"><input type="radio" name="genre" value="Femme"><span class="check-icon">✓</span><span>♀ Femme</span></label>
+      </div>
+    </div>
+
+    <!-- Compte -->
+    <div class="form-section-title">🔐 Créer votre compte</div>
+    <div class="row">
+      <div class="field"><label for="username">Nom d'utilisateur <span class="req">*</span></label><input type="text" id="username" placeholder="ahmed123" autocomplete="username" required></div>
+      <div class="field"><label for="mot_de_passe">Mot de passe <span class="req">*</span> <span class="label-hint">— 6 caractères min.</span></label><input type="password" id="mot_de_passe" placeholder="••••••••" autocomplete="new-password" required></div>
+    </div>
+
+    <!-- Métriques -->
+    <div class="form-section-title">📏 Métriques physiques <span class="label-hint">— optionnel</span></div>
+    <div class="row three">
+      <div class="field"><label for="poids">Poids (kg)</label><input type="number" id="poids" placeholder="75" min="30" max="300" step="0.1"></div>
+      <div class="field"><label for="taille">Taille (cm)</label><input type="number" id="taille" placeholder="175" min="100" max="250"></div>
+      <div class="field"><label for="objectif_poids">Objectif poids (kg)</label><input type="number" id="objectif_poids" placeholder="70" min="30" max="300" step="0.1"></div>
+    </div>
+    <div class="imc-preview hidden" id="imcPreview">
+      <span class="imc-label">IMC estimé :</span>
+      <span class="imc-val" id="imcVal">—</span>
+      <span class="imc-tag" id="imcTag"></span>
+    </div>
+
+    <!-- Santé -->
+    <div class="form-section-title">🏥 Santé &amp; médicaments <span class="label-hint">— confidentiel</span></div>
+    <div class="sante-group">
+      <label class="check-card"><input type="radio" name="sante_type" value="aucun" checked onchange="toggleSanteDetail(false)"><span class="check-icon">✓</span><span>✅ Aucune maladie / médicament</span></label>
+      <label class="check-card"><input type="radio" name="sante_type" value="oui" onchange="toggleSanteDetail(true)"><span class="check-icon">✓</span><span>⚠️ J'ai quelque chose à signaler</span></label>
+    </div>
+    <div class="sante-detail hidden" id="santeDetail">
+      <textarea id="sante_detail" placeholder="Ex : diabète, hypertension, prise de Ventoline…"></textarea>
+      <p class="sante-note">🔒 Informations strictement confidentielles, accessibles uniquement à votre coach.</p>
+    </div>
+
+    <!-- Programmes -->
+    <div class="form-section-title">🏋️ Programmes souhaités <span class="req">*</span> <span class="label-hint">— plusieurs choix possibles</span></div>
+    <div class="check-group">
+      <label class="check-card"><input type="checkbox" name="programme" value="Musculation"><span class="check-icon">✓</span><span>🏋️ Musculation</span></label>
+      <label class="check-card"><input type="checkbox" name="programme" value="CrossFit"><span class="check-icon">✓</span><span>🔥 CrossFit</span></label>
+      <label class="check-card"><input type="checkbox" name="programme" value="Boxe"><span class="check-icon">✓</span><span>🥊 Boxe</span></label>
+      <label class="check-card"><input type="checkbox" name="programme" value="Yoga & Récupération"><span class="check-icon">✓</span><span>🧘 Yoga & Récup</span></label>
+      <label class="check-card"><input type="checkbox" name="programme" value="Coaching Personnel"><span class="check-icon">✓</span><span>👤 Coach Perso</span></label>
+    </div>
+
+    <!-- Abonnement -->
+    <div class="form-section-title">💳 Abonnement <span class="req">*</span></div>
+    <div class="plans">
+      <div class="plan active" onclick="selectPlan(this,'Essential')">
+        <p class="plan-name">Essential</p>
+        <p class="plan-price">89 <sub>DT/mois</sub></p>
+        <p class="plan-feat">Accès salle + vestiaires</p>
+      </div>
+      <div class="plan" onclick="selectPlan(this,'Performance')">
+        <p class="plan-name">Performance</p>
+        <p class="plan-price">149 <sub>DT/mois</sub></p>
+        <p class="plan-feat">+ 2 séances coach/mois</p>
+      </div>
+      <div class="plan" onclick="selectPlan(this,'Élite')">
+        <p class="plan-name">Élite</p>
+        <p class="plan-price">249 <sub>DT/mois</sub></p>
+        <p class="plan-feat">Coaching perso illimité</p>
+      </div>
+    </div>
+    <input type="hidden" id="abonnement" value="Essential">
+
+    <!-- MODE DE PAIEMENT -->
+    <div class="form-section-title">💰 Mode de paiement <span class="req">*</span></div>
+    <div class="pay-modes">
+      <label class="pay-mode-card">
+        <input type="radio" name="mode_paiement" value="espèces" checked>
+        <span class="pm-icon">💵</span>
+        <span class="pm-name">Espèces</span>
+        <span class="pm-sub">Paiement en caisse</span>
+      </label>
+      <label class="pay-mode-card">
+        <input type="radio" name="mode_paiement" value="carte">
+        <span class="pm-icon">💳</span>
+        <span class="pm-name">Carte bancaire</span>
+        <span class="pm-sub">Visa / Mastercard</span>
+      </label>
+      <label class="pay-mode-card">
+        <input type="radio" name="mode_paiement" value="e-dinar_jeune">
+        <span class="pm-icon">📱</span>
+        <span class="pm-name">E-Dinar Jeune</span>
+        <span class="pm-sub">Carte prépayée La Poste</span>
+      </label>
+    </div>
+
+    <div class="field" style="margin-top:20px">
+      <label for="message">Message <span class="label-hint">— optionnel</span></label>
+      <textarea id="message" placeholder="Dis-nous en plus sur tes objectifs…"></textarea>
+    </div>
+
+    <div class="terms-row" id="termsRow" onclick="toggleTerms()">
+      <div class="check-box" id="termsCheck"></div>
+      <p class="terms-text">J'accepte les <a href="#">conditions générales</a> et la <a href="#">politique de confidentialité</a> d'Élite Gym. <span class="req">*</span></p>
+    </div>
+
+    <div class="form-bottom">
+      <p class="promo">🎁 <strong>1 mois offert</strong> pour toute inscription en avril 2026</p>
+      <div class="form-actions">
+        <a href="index.html" class="btn-cancel">✕ Annuler</a>
+        <button type="submit" class="btn-primary">Créer mon compte →</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="success" id="successMsg"></div>
+</main>
+
+<footer>
+  <div class="footer-logo">ÉLITE<span>GYM</span></div>
+  <div class="footer-links">
+    <a href="index.html">Accueil</a>
+    <a href="login.html">Connexion</a>
+    <a href="#">Instagram</a>
+  </div>
+  <p class="footer-copy">© 2026 Élite Gym. Tous droits réservés.</p>
+</footer>
+
+<script>
+let termsChecked = false;
+let selectedPlan = 'Essential';
+
+function toggleTerms() {
+  termsChecked = !termsChecked;
+  const row = document.getElementById('termsRow');
+  const box = document.getElementById('termsCheck');
+  row.classList.toggle('checked', termsChecked);
+  box.textContent = termsChecked ? '✓' : '';
+}
+
+function selectPlan(el, name) {
+  document.querySelectorAll('.plan').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  selectedPlan = name;
+  document.getElementById('abonnement').value = name;
+}
+
+function toggleSanteDetail(show) {
+  document.getElementById('santeDetail').classList.toggle('hidden', !show);
+}
+
+// IMC calculation
+['poids','taille'].forEach(id => {
+  document.getElementById(id).addEventListener('input', calcIMC);
+});
+function calcIMC() {
+  const p = parseFloat(document.getElementById('poids').value);
+  const t = parseFloat(document.getElementById('taille').value);
+  const preview = document.getElementById('imcPreview');
+  if (!p || !t) { preview.classList.add('hidden'); return; }
+  const imc = (p / Math.pow(t/100, 2)).toFixed(1);
+  let tag = '';
+  if (imc < 18.5) tag = '— Insuffisance pondérale';
+  else if (imc < 25) tag = '— Poids normal ✓';
+  else if (imc < 30) tag = '— Surpoids';
+  else tag = '— Obésité';
+  document.getElementById('imcVal').textContent = imc;
+  document.getElementById('imcTag').textContent = tag;
+  preview.classList.remove('hidden');
+}
+
+// Form submit
+document.getElementById('inscriptionForm').addEventListener('submit', async e => {
+  e.preventDefault();
+
+  // Validation
+  const required = ['prenom','nom','email','tel','username','mot_de_passe'];
+  for (const id of required) {
+    if (!document.getElementById(id).value.trim()) {
+      alert('Veuillez remplir tous les champs obligatoires.');
+      document.getElementById(id).focus();
+      return;
+    }
+  }
+  const genre = document.querySelector('input[name="genre"]:checked');
+  if (!genre) { alert('Veuillez sélectionner votre genre.'); return; }
+  const programmes = [...document.querySelectorAll('input[name="programme"]:checked')].map(i=>i.value);
+  if (!programmes.length) { alert('Veuillez sélectionner au moins un programme.'); return; }
+  if (!termsChecked) { alert('Veuillez accepter les conditions générales.'); return; }
+  const mdp = document.getElementById('mot_de_passe').value;
+  if (mdp.length < 6) { alert('Le mot de passe doit contenir au moins 6 caractères.'); return; }
+
+  const modePaiement = document.querySelector('input[name="mode_paiement"]:checked')?.value || 'espèces';
+
+  const fd = new FormData();
+  fd.append('prenom', document.getElementById('prenom').value.trim());
+  fd.append('nom', document.getElementById('nom').value.trim());
+  fd.append('email', document.getElementById('email').value.trim());
+  fd.append('tel', document.getElementById('tel').value.trim());
+  fd.append('genre', genre.value);
+  fd.append('username', document.getElementById('username').value.trim());
+  fd.append('mot_de_passe', mdp);
+  fd.append('poids', document.getElementById('poids').value || '');
+  fd.append('taille', document.getElementById('taille').value || '');
+  fd.append('objectif_poids', document.getElementById('objectif_poids').value || '');
+  fd.append('sante_type', document.querySelector('input[name="sante_type"]:checked')?.value || 'aucun');
+  fd.append('sante_detail', document.getElementById('sante_detail').value || '');
+  fd.append('programmes', programmes.join(', '));
+  fd.append('abonnement', selectedPlan);
+  fd.append('mode_paiement', modePaiement);
+  fd.append('message', document.getElementById('message').value || '');
+
+  const btn = e.target.querySelector('button[type=submit]');
+  btn.textContent = 'Création en cours…'; btn.disabled = true;
+
+  try {
+    const res = await fetch('../api/inscription.php', { method:'POST', body:fd });
+    const data = await res.json();
+    if (data.success) {
+      document.getElementById('inscriptionForm').style.display = 'none';
+      const s = document.getElementById('successMsg');
+      s.style.display = 'block';
+      s.innerHTML = `<h3>🎉 Bienvenue dans l'Élite !</h3><p>Ton compte a été créé avec succès.<br>Mode de paiement choisi : <strong>${modePaiement}</strong><br><br><a href="login.html" style="color:var(--gold);font-weight:700;text-decoration:none">→ Se connecter maintenant</a></p>`;
+    } else {
+      alert('⚠ ' + data.message);
+      btn.textContent = 'Créer mon compte →'; btn.disabled = false;
+    }
+  } catch {
+    alert('⚠ Impossible de contacter le serveur.');
+    btn.textContent = 'Créer mon compte →'; btn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>

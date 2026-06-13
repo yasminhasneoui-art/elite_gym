@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Élite Gym — Connexion</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--white:#fff;--cream:#faf8f4;--dark:#1c1712;--mid:#4a4035;--muted:#9a8a78;--gold:#c9a84c;--gold2:#e8c96a;--border:#e8e0d4;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--cream);color:var(--dark);font-family:'DM Sans',sans-serif;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;}
+
+/* LEFT — image */
+.left{position:relative;overflow:hidden;}
+.left-img{position:absolute;inset:0;background-image:url('images/login.jpg');background-size:cover;background-position:center;background-size:cover;background-position:center;background-color:#2a2019;filter:brightness(.4);}
+.left-line{position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--gold);z-index:2;}
+.left-content{position:relative;z-index:3;padding:60px 56px;display:flex;flex-direction:column;justify-content:flex-end;height:100%;}
+.left-logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:28px;letter-spacing:3px;color:#fff;text-decoration:none;text-transform:uppercase;position:absolute;top:40px;left:56px;}
+.left-logo span{color:var(--gold);}
+.left-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(40px,5vw,64px);color:#fff;line-height:.95;margin-bottom:16px;}
+.left-title em{font-style:normal;color:var(--gold);}
+.left-sub{font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;max-width:360px;}
+
+/* RIGHT — form */
+.right{display:flex;flex-direction:column;justify-content:center;padding:60px 64px;background:var(--white);}
+.form-tag{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.form-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:36px;color:var(--dark);margin-bottom:8px;}
+.form-sub{font-size:14px;color:var(--muted);margin-bottom:40px;line-height:1.6;}
+.form-sub a{color:var(--gold);text-decoration:none;font-weight:600;}
+.form-sub a:hover{text-decoration:underline;}
+
+.field{margin-bottom:20px;}
+label{display:block;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+input{width:100%;background:var(--cream);border:1px solid var(--border);border-bottom:2px solid var(--border);color:var(--dark);padding:14px 18px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:all .25s;border-radius:4px;}
+input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.12);background:#fff;}
+input::placeholder{color:rgba(154,138,120,.5);}
+
+.btn-primary{width:100%;background:var(--gold);color:var(--dark);border:none;padding:16px;font-size:14px;font-weight:700;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .25s;margin-top:8px;}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 8px 20px rgba(201,168,76,.35);}
+
+.divider{display:flex;align-items:center;gap:16px;margin:24px 0;color:var(--muted);font-size:12px;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
+
+.btn-register{width:100%;background:transparent;color:var(--dark);border:1px solid var(--border);padding:14px;font-size:13px;font-weight:600;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .25s;text-decoration:none;display:block;text-align:center;}
+.btn-register:hover{border-color:var(--gold);color:var(--gold);}
+
+.error-msg{background:#fff5f5;border:1px solid #ffc9c9;color:#e63946;padding:12px 16px;border-radius:4px;font-size:13px;font-weight:600;margin-bottom:16px;display:none;}
+.error-msg.visible{display:block;}
+</style>
+</head>
+<body>
+
+<!-- GAUCHE -->
+<div class="left">
+  <div class="left-img"></div>
+  <div class="left-line"></div>
+  <a href="index.html" class="left-logo">ÉLITE<span>GYM</span></a>
+  <div class="left-content">
+    <h1 class="left-title">MON<br>ESPACE<br><em>MEMBRE.</em></h1>
+    <p class="left-sub">Accède à ton profil, tes séances, ton coach et ton suivi personnalisé.</p>
+  </div>
+</div>
+
+<!-- DROITE -->
+<div class="right">
+  <p class="form-tag">Connexion</p>
+  <h2 class="form-title">Bon retour 👋</h2>
+  <p class="form-sub">Pas encore membre ? <a href="inscription.html">S'inscrire gratuitement →</a></p>
+
+  <div class="error-msg" id="errMsg"></div>
+
+  <form id="loginForm" novalidate>
+    <div class="field">
+      <label for="username">Nom d'utilisateur ou email</label>
+      <input type="text" id="username" placeholder="ahmed123" autocomplete="username" required>
+    </div>
+    <div class="field">
+      <label for="mot_de_passe">Mot de passe</label>
+      <input type="password" id="mot_de_passe" placeholder="••••••••" autocomplete="current-password" required>
+    </div>
+    <button type="submit" class="btn-primary">Se connecter →</button>
+  </form>
+
+  <div class="divider">ou</div>
+  <a href="inscription.html" class="btn-register">Créer un compte gratuitement</a>
+</div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const err = document.getElementById('errMsg');
+  err.classList.remove('visible');
+
+  const fd = new FormData();
+  fd.append('username',     document.getElementById('username').value.trim());
+  fd.append('mot_de_passe', document.getElementById('mot_de_passe').value);
+
+  const btn = e.target.querySelector('button');
+  btn.textContent = 'Connexion…';
+  btn.disabled = true;
+
+  try {
+    const res  = await fetch('../api/login.php', { method:'POST', body:fd });
+    const data = await res.json();
+    if (data.success) {
+      window.location.href = data.redirect;
+    } else {
+      err.textContent = '⚠ ' + data.message;
+      err.classList.add('visible');
+      btn.textContent = 'Se connecter →';
+      btn.disabled = false;
+    }
+  } catch {
+    err.textContent = '⚠ Impossible de contacter le serveur.';
+    err.classList.add('visible');
+    btn.textContent = 'Se connecter →';
+    btn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
